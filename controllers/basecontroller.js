@@ -65,5 +65,16 @@ class BaseController {
             return callback(null, dbNewObject);
         });
     }
+	
+	findByIdAndRemove(params, callback) {
+		this.model.findByIdAndRemove(params, (err, dbNewObject) => {
+            if (err) {
+                return callback(err);
+            }
+			//console.log("hai");
+			//return false;
+            return callback(null, dbNewObject);
+        });
+	}
 }
 module.exports = BaseController;

@@ -58,7 +58,7 @@ router.get('/getUserById', function (req, res, next) {
 router.post('/updateUser', function (req, res, next) {
   console.log('findByIdAndUpdate', req.query._id);
   
-  userController.findByIdAndUpdate({ _id: req.query._id }, req.body,(error, response) => {
+   userController.findByIdAndUpdate({ _id: req.query._id },(error, response) => {
 	  console.log("hello",req.body);
     if (error) {
       res.send({
@@ -86,6 +86,24 @@ router.get('/getColors', function (req, res, next) {
     // }
     res.send(response)
   })
+})
+
+router.delete('/deleteuser',function(req, res, next){
+	
+	//console.log(req.query._id);deleteById
+	userController.findByIdAndRemove({ _id: req.query._id },(error, response) => {
+	  //console.log("hello",req.body);
+    if (error) {
+      res.send({
+        error: error
+      })
+    } else {
+      res.send({
+        response: response
+      })
+    }
+  })
+	
 })
 
 module.exports = router;
